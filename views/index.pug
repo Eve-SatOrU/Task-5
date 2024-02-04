@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    .app-main
+      h1 weather app
+      form(action="/weather" method="get")
+        label(for="cityInput") Enter City:
+        input(type="text" id="cityInput" name="city" placeholder="Enter city name")
+        button(type="submit") Get Weather
+      #weatherInfo
+        if weather
+          p Temperature: #{weather.main.temp}K
+          p Description: #{weather.weather[0].description}
+          p Feels like: #{weather.main.feels_like}K
+          p Min temperature: #{weather.main.temp_min}K
+          p Max temperature: #{weather.main.temp_max}K
+          p Pressure: #{weather.main.pressure}hPa
+          p Humidity: #{weather.main.humidity}%
+          p Wind speed: #{weather.wind.speed}m/s
+          p Wind direction: #{weather.wind.deg}°
+          p Cloudiness: #{weather.clouds.all}%
+          p Sunrise: #{new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
+          p Sunset: #{new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+
+        else
+          p No weather data available.
